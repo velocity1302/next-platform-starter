@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maschine Coach Agent</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <h1>Maschine Coach Agent</h1>
+    <label>Genre
+      <select id="genreSelect"></select>
+    </label>
+    <section id="genreInfo"></section>
+    <section>
+      <h2>Coachmodus</h2>
+      <div id="stepCard"></div>
+      <button id="readyBtn">Klaar</button>
+      <button id="problemBtn">Probleem</button>
+    </section>
+    <section>
+      <h2>MIDI Generator</h2>
+      <button id="midiBtn">Genereer MIDI-pack</button>
+      <p id="midiStatus"></p>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

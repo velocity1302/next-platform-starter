@@ -1,0 +1,20 @@
+{
+  "name": "maschine-coach-agent",
+  "version": "1.0.0",
+  "description": "Lokale desktop companion-app voor Native Instruments Maschine 3",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc && cp -r src/renderer/*.html src/renderer/*.css dist/renderer/",
+    "start": "npm run build && electron dist/main.js",
+    "dev": "tsc -w"
+  },
+  "dependencies": {
+    "electron-store": "^10.1.0",
+    "midi-writer-js": "^3.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "electron": "^36.0.0",
+    "typescript": "^5.8.3"
+  }
+}
