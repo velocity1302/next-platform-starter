@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="nl">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Maschine Coach Agent Prototype</title></head>
+<body style="font-family:Arial;max-width:900px;margin:20px auto;">
+<h1>Maschine Coach Agent – Zero dependency prototype</h1>
+<p>Deze pagina werkt zonder npm packages en kan direct geopend worden in de browser.</p>
+<label>Genre <select id="genre"></select></label>
+<div id="genreInfo"></div>
+<div id="step"></div>
+<button id="ok">Klaar</button><button id="issue">Probleem</button>
+<script>
+const genres={hiphop:{naam:'Hiphop',bpm:'82-94'},trap:{naam:'Trap',bpm:'130-155'},house:{naam:'House',bpm:'118-126'},techno:{naam:'Techno',bpm:'128-138'},drum_bass:{naam:'Drum & Bass',bpm:'168-176'},pop:{naam:'Pop',bpm:'96-124'},ambient:{naam:'Ambient',bpm:'60-90'},afrobeat:{naam:'Afrobeat',bpm:'95-115'},reggaeton:{naam:'Reggaeton',bpm:'88-98'},lofi:{naam:'Lo-fi',bpm:'68-84'}};
+const steps=['Project instellen','Groups maken','Drums maken','Bass maken','Chords/melody maken','Scenes bouwen','Arrangement maken','Simpele mix','Export-check'];
+let i=0;const st={};
+const sel=document.getElementById('genre');Object.entries(genres).forEach(([k,v])=>{const o=document.createElement('option');o.value=k;o.textContent=v.naam;sel.appendChild(o);});
+function render(){const g=genres[sel.value||'hiphop'];document.getElementById('genreInfo').innerHTML=`<p><b>${g.naam}</b> (${g.bpm} BPM)</p>`;document.getElementById('step').innerHTML=`<p>Stap ${i+1}: <b>${steps[i]}</b></p><p>Status: ${st[i]||'open'}</p>`;}
+sel.onchange=render;document.getElementById('ok').onclick=()=>{st[i]='klaar';i=Math.min(i+1,steps.length-1);render();};document.getElementById('issue').onclick=()=>{st[i]='probleem';render();};sel.value='hiphop';render();
+</script>
+</body></html>

@@ -37,3 +37,8 @@ npm start
 ## Codex Online / web preview
 - Next.js route: `/maschine-coach-agent`
 - Zero-dependency prototype: open `prototype/index.html` direct in browser.
+
+## Snel openen
+Als de Next.js app draait in de repo root:
+- Web coach: `http://localhost:3000/maschine-coach-agent`
+- Prototype: `http://localhost:3000/prototype/index.html`

@@ -36,6 +36,14 @@ export default function Page() {
                     <RuntimeContextCard />
                 </section>
             )}
+            <section className="flex flex-col gap-3">
+                <h2 className="text-2xl font-semibold">Maschine Coach Agent openen</h2>
+                <p>Je kunt de nieuwe coach direct openen via onderstaande links.</p>
+                <div className="flex flex-wrap gap-3">
+                    <Link href="/maschine-coach-agent" className="btn">Open web coach</Link>
+                    <Link href="/prototype/index.html" className="btn">Open zero-dependency prototype</Link>
+                </div>
+            </section>
             <section className="flex flex-col gap-4">
                 <Markdown content={preDynamicContentExplainer} />
                 <RandomQuote />
