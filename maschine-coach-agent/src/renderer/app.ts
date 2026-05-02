@@ -3,7 +3,7 @@ declare global {
     coachApi: {
       getData: () => Promise<any>;
       saveProgress: (payload: any) => Promise<boolean>;
-      generateMidi: (genre: string) => Promise<string>;
+      generateMidi: (genre: string) => Promise<{ ok: boolean; exportDir?: string; message?: string }>; 
     };
   }
 }
@@ -49,8 +49,10 @@ async function init() {
   };
 
   (document.getElementById('midiBtn') as HTMLButtonElement).onclick = async () => {
-    const dir = await window.coachApi.generateMidi(selectedGenre);
-    (document.getElementById('midiStatus') as HTMLElement).textContent = `MIDI geëxporteerd naar: ${dir}`;
+    const result = await window.coachApi.generateMidi(selectedGenre);
+    (document.getElementById('midiStatus') as HTMLElement).textContent = result.ok
+      ? `MIDI geëxporteerd naar: ${result.exportDir}`
+      : (result.message || 'MIDI export mislukt.');
   };
 }
 

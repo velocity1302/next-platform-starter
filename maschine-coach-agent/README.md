@@ -1,39 +1,39 @@
 # Maschine Coach Agent
 
-Lokale desktop companion-app (Electron + TypeScript) die je stap voor stap coacht tijdens het produceren in **Native Instruments Maschine 3**.
+Lokale desktop companion-app (Electron + TypeScript) voor **Native Instruments Maschine 3**.
 
 ## Features
-- Nederlandse UI en coach-tekst.
-- 10 genres met richtlijnen voor BPM, drums, bass, akkoorden en arrangement.
-- Coachmodus met stappen en statusknoppen: **Klaar / Probleem**.
-- MIDI-generator (drums, bassline, chords, melody idea).
-- Exportmap: `Maschine Coach Exports` (in je Documenten-map).
-- Lokale sessie-opslag via `electron-store`.
+- Nederlandse coachflow met 10 genres.
+- Per genre: BPM, drumstijl, bass-aanpak, akkoordidee, arrangement.
+- Stapmodus met Doel / Actie / Waarom / Luistercheck + `Klaar`/`Probleem`.
+- MIDI-generator (drums, bassline, chords, melody) naar `Documents/Maschine Coach Exports`.
+- Lokale sessie-opslag met fallback als dependencies ontbreken.
 
-## Installatie
+## Installatie (op je eigen machine)
+> In deze Codex runtime faalt `npm install` door policy (`403 Forbidden`).
+> Voer installatie lokaal uit op je eigen computer.
+
+1. Ga naar de map:
 ```bash
 cd maschine-coach-agent
-npm install
-npm start
 ```
-
-## Build
+2. Installeer dependencies:
+```bash
+npm install
+```
+3. Build:
 ```bash
 npm run build
 ```
+4. Start de desktop-app:
+```bash
+npm start
+```
 
-Daarna vind je de gecompileerde bestanden in `dist/`.
+## Fallback gedrag bij ontbrekende dependencies
+- Als `electron-store` ontbreekt: app gebruikt tijdelijke in-memory sessie-opslag.
+- Als `midi-writer-js` ontbreekt: MIDI-export toont duidelijke foutmelding in de UI met instructie om `npm install` uit te voeren.
 
-## Structuur
-- `src/main.ts`: Electron main proces + IPC.
-- `src/preload.ts`: veilige bridge naar renderer.
-- `src/renderer/`: desktop UI.
-- `src/data/`: genres en coachstappen.
-- `src/services/midi.ts`: MIDI-export generator.
-
-## Codex Online openen
-Naast de Electron desktop-app is er ook een webroute toegevoegd in deze repo:
-- Start de Next.js app in de repository root.
-- Open daarna: `/maschine-coach-agent`
-
-Deze route biedt dezelfde coachflow en genre-informatie in browservorm, handig voor Codex Online preview.
+## Codex Online / web preview
+- Next.js route: `/maschine-coach-agent`
+- Zero-dependency prototype: open `prototype/index.html` direct in browser.

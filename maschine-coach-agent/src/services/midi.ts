@@ -1,6 +1,5 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import MidiWriter from 'midi-writer-js';
 import { GenreKey } from '../types';
 
 const NOTE_MAP: Record<GenreKey, string[]> = {
@@ -9,24 +8,34 @@ const NOTE_MAP: Record<GenreKey, string[]> = {
   afrobeat: ['C3', 'E3', 'G3', 'B3'], reggaeton: ['C3', 'Eb3', 'G3', 'Ab3'], lofi: ['C3', 'E3', 'G3', 'B3']
 };
 
+function getMidiWriter() {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    return require('midi-writer-js');
+  } catch {
+    throw new Error('Package "midi-writer-js" ontbreekt. Voer eerst "npm install" uit.');
+  }
+}
+
 export function generateMidiPack(baseDir: string, genre: GenreKey): string {
+  const MidiWriter = getMidiWriter();
   const exportDir = path.join(baseDir, 'Maschine Coach Exports');
   fs.mkdirSync(exportDir, { recursive: true });
 
-  writeTrack(path.join(exportDir, `${genre}_drums.mid`), buildDrumTrack());
-  writeTrack(path.join(exportDir, `${genre}_bassline.mid`), buildBassTrack(NOTE_MAP[genre]));
-  writeTrack(path.join(exportDir, `${genre}_chords.mid`), buildChordTrack(NOTE_MAP[genre]));
-  writeTrack(path.join(exportDir, `${genre}_melody.mid`), buildMelodyTrack(NOTE_MAP[genre]));
+  writeTrack(MidiWriter, path.join(exportDir, `${genre}_drums.mid`), buildDrumTrack(MidiWriter));
+  writeTrack(MidiWriter, path.join(exportDir, `${genre}_bassline.mid`), buildBassTrack(MidiWriter, NOTE_MAP[genre]));
+  writeTrack(MidiWriter, path.join(exportDir, `${genre}_chords.mid`), buildChordTrack(MidiWriter, NOTE_MAP[genre]));
+  writeTrack(MidiWriter, path.join(exportDir, `${genre}_melody.mid`), buildMelodyTrack(MidiWriter, NOTE_MAP[genre]));
 
   return exportDir;
 }
 
-function writeTrack(filePath: string, track: InstanceType<typeof MidiWriter.Track>) {
+function writeTrack(MidiWriter: any, filePath: string, track: any) {
   const writer = new MidiWriter.Writer([track]);
   fs.writeFileSync(filePath, Buffer.from(writer.buildFile()));
 }
 
-function buildDrumTrack() {
+function buildDrumTrack(MidiWriter: any) {
   const track = new MidiWriter.Track();
   track.setTempo(120);
   track.addEvent(new MidiWriter.NoteEvent({ pitch: ['C2'], duration: '4', startTick: 0 }));
@@ -36,23 +45,21 @@ function buildDrumTrack() {
   return track;
 }
 
-function buildBassTrack(notes: string[]) {
+function buildBassTrack(MidiWriter: any, notes: string[]) {
   const track = new MidiWriter.Track();
   track.setTempo(120);
   notes.forEach((n) => track.addEvent(new MidiWriter.NoteEvent({ pitch: [n], duration: '4' })));
   return track;
 }
 
-function buildChordTrack(notes: string[]) {
+function buildChordTrack(MidiWriter: any, notes: string[]) {
   const track = new MidiWriter.Track();
   track.setTempo(120);
-  for (let i = 0; i < 4; i++) {
-    track.addEvent(new MidiWriter.NoteEvent({ pitch: [notes[0], notes[1], notes[2]], duration: '2' }));
-  }
+  for (let i = 0; i < 4; i++) track.addEvent(new MidiWriter.NoteEvent({ pitch: [notes[0], notes[1], notes[2]], duration: '2' }));
   return track;
 }
 
-function buildMelodyTrack(notes: string[]) {
+function buildMelodyTrack(MidiWriter: any, notes: string[]) {
   const track = new MidiWriter.Track();
   track.setTempo(120);
   track.addEvent(notes.map((n) => new MidiWriter.NoteEvent({ pitch: [n], duration: '8' })));
