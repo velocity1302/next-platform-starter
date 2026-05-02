@@ -6,7 +6,10 @@
   "scripts": {
     "build": "tsc && cp -r src/renderer/*.html src/renderer/*.css dist/renderer/",
     "start": "npm run build && electron dist/main.js",
-    "dev": "tsc -w"
+    "dev": "tsc -w",
+    "start:web": "echo Open http://localhost:3000/maschine-coach-agent from repo root",
+    "dist:win": "echo Run on Windows PC after npm install: npx electron-builder --win",
+    "dist:mac": "echo Run on macOS PC after npm install: npx electron-builder --mac"
   },
   "dependencies": {
     "electron-store": "^10.1.0",
@@ -15,7 +18,8 @@
   "devDependencies": {
     "@types/node": "^22.15.3",
     "electron": "^36.0.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "electron-builder": "^24.13.3"
   },
   "engines": {
     "node": ">=20"
