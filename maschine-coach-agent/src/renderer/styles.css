@@ -1,0 +1,7 @@
+body { font-family: Arial, sans-serif; background: #111; color: #f7f7f7; margin: 0; }
+main { max-width: 920px; margin: 24px auto; padding: 24px; background: #1e1e1e; border-radius: 12px; }
+button { margin-right: 8px; padding: 10px 14px; border: 0; border-radius: 8px; cursor: pointer; }
+#readyBtn { background: #2ecc71; }
+#problemBtn { background: #f39c12; }
+#midiBtn { background: #3498db; color: white; }
+#stepCard, #genreInfo { background: #2a2a2a; padding: 14px; border-radius: 8px; margin: 12px 0; }

@@ -1,0 +1,13 @@
+import { CoachStep } from '../types';
+
+export const coachSteps: CoachStep[] = [
+  { id: 'project', titel: 'Project instellen', doel: 'Goed startpunt qua tempo en toonhoogte.', actie: 'Open Maschine 3 > New Project > stel BPM in op basis van genre en kies root key.', waarom: 'Correcte basis voorkomt latere timing- en harmonieproblemen.', luistercheck: 'Klinkt metronoom comfortabel voor jouw groove?' },
+  { id: 'groups', titel: 'Groups maken', doel: 'Overzichtelijke sessie-opbouw.', actie: 'Maak Groups voor Drums, Bass, Chords, Melody en FX.', waarom: 'Sneller werken en makkelijker arrangeren.', luistercheck: 'Is elke klankgroep logisch gescheiden?' },
+  { id: 'drums', titel: 'Drums maken', doel: 'Fundament van de track neerzetten.', actie: 'Programmeer kick/snare/hat patroon van 1-2 bars. Voeg swing toe indien nodig.', waarom: 'Drums bepalen energie en genre-herkenning.', luistercheck: 'Groovet het zonder andere instrumenten?' },
+  { id: 'bass', titel: 'Bass maken', doel: 'Laag en groove koppelen aan drums.', actie: 'Schrijf bassline die kick ondersteunt; gebruik rusten voor ademruimte.', waarom: 'Bas en kick vormen samen de motor van de track.', luistercheck: 'Blijft laag strak en duidelijk zonder modder?' },
+  { id: 'chords', titel: 'Chords/melody maken', doel: 'Muzikale emotie en hook toevoegen.', actie: 'Maak simpele akkoordprogressie en voeg korte lead/melodie toe.', waarom: 'Harmonie + melodie maken je track herkenbaar.', luistercheck: 'Onthoud je de hook na 1 luisterbeurt?' },
+  { id: 'scenes', titel: 'Scenes bouwen', doel: 'Variatie tussen secties creëren.', actie: 'Maak minimaal 4 scenes: intro, groove, breakdown, climax.', waarom: 'Scenes versnellen live jammen en arrangeren.', luistercheck: 'Voelt elke scene als een duidelijke stap?' },
+  { id: 'arrangement', titel: 'Arrangement maken', doel: 'Volledige songstructuur opbouwen.', actie: 'Sleep scenes naar Song view en maak transitions met fills/filters.', waarom: 'Structuur houdt luisteraars betrokken.', luistercheck: 'Komt de energiecurve logisch over?' },
+  { id: 'mix', titel: 'Simpele mix', doel: 'Balans en helderheid verbeteren.', actie: 'Level eerst, daarna EQ-cut op overlap en lichte compressie op bus.', waarom: 'Een ruwe mix maakt productie beslissingen betrouwbaarder.', luistercheck: 'Hoor je elk element zonder hard volume?' },
+  { id: 'export', titel: 'Export-check', doel: 'Klaarzetten voor delen of mastering.', actie: 'Check headroom (-6 dB piek), mono-compatibiliteit en exporteer WAV.', waarom: 'Technische checks voorkomen verrassingen achteraf.', luistercheck: 'Klinkt je export consistent op speakers én headphones?' }
+];
