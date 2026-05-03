@@ -20,7 +20,12 @@ cd maschine-coach-agent
 ./scripts/install-windows.ps1
 ```
 
-### macOS / Linux
+### macOS Sequoia (15.x)
+```bash
+./scripts/install-macos-sequoia.sh
+```
+
+### macOS (algemeen) / Linux
 ```bash
 ./scripts/install-macos-linux.sh
 ```
@@ -50,3 +55,14 @@ npm run dist:mac
 ## Web openen
 - Next.js route: `http://localhost:3000/maschine-coach-agent`
 - Prototype: `http://localhost:3000/prototype/index.html`
+
+
+## macOS Sequoia tips
+- Als Gatekeeper een waarschuwing geeft na install/build, voer uit in de projectmap:
+```bash
+xattr -dr com.apple.quarantine .
+```
+- Daarna opnieuw starten met:
+```bash
+npm start
+```

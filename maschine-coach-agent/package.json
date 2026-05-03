@@ -9,7 +9,8 @@
     "dev": "tsc -w",
     "start:web": "echo Open http://localhost:3000/maschine-coach-agent from repo root",
     "dist:win": "echo Run on Windows PC after npm install: npx electron-builder --win",
-    "dist:mac": "echo Run on macOS PC after npm install: npx electron-builder --mac"
+    "dist:mac": "echo Run on macOS PC after npm install: npx electron-builder --mac",
+    "install:macos-sequoia": "./scripts/install-macos-sequoia.sh"
   },
   "dependencies": {
     "electron-store": "^10.1.0",
